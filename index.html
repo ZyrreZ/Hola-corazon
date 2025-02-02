@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Amor, ¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffdde1;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        h1 {
+            color: #ff4d6d;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        .yes:hover {
+            background-color: #ff1e4d;
+        }
+        .no {
+            background-color: #ccc;
+            color: black;
+            position: absolute;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-20px); opacity: 0.7; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .heart, .teddy, .flower {
+            position: absolute;
+            animation: float 2s infinite;
+        }
+        .heart {
+            color: red;
+            font-size: 24px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+        }
+        .teddy {
+            font-size: 32px;
+        }
+        .flower {
+            font-size: 28px;
+        }
+        .background-glow {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(255, 192, 203, 0.3) 10%, rgba(255, 255, 255, 0) 70%);
+            animation: glow 3s infinite alternate;
+            z-index: 1;
+        }
+        @keyframes glow {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-glow"></div>
+    <div class="container">
+        <h1>Mi Amor, ¿Quieres ser mi San Valentín? ❤️</h1>
+        <div class="image-container">
+            <img src="image.png" alt="Imagen Romántica">
+        </div>
+        <div class="buttons">
+            <button class="yes" onclick="aceptarAmor()">Sí</button>
+            <button class="no" onmouseover="mueveBoton(this)">No</button>
+        </div>
+    </div>
+    <audio id="loveSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
+    <script>
+        function mueveBoton(btn) {
+            let x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            let y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.left = `${x}px`;
+            btn.style.top = `${y}px`;
+        }
+        function creaElementos() {
+            for (let i = 0; i < 15; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('heart');
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                document.body.appendChild(heart);
+            }
+            for (let i = 0; i < 5; i++) {
+                let teddy = document.createElement('div');
+                teddy.innerHTML = '🧸';
+                teddy.classList.add('teddy');
+                teddy.style.left = `${Math.random() * 100}vw`;
+                teddy.style.top = `${Math.random() * 100}vh`;
+                document.body.appendChild(teddy);
+            }
+            for (let i = 0; i < 10; i++) {
+                let flower = document.createElement('div');
+                flower.innerHTML = i % 2 === 0 ? '🌹' : '🌻';
+                flower.classList.add('flower');
+                flower.style.left = `${Math.random() * 100}vw`;
+                flower.style.top = `${Math.random() * 100}vh`;
+                document.body.appendChild(flower);
+            }
+        }
+        function aceptarAmor() {
+            document.getElementById('loveSound').play();
+            alert('¡Estoy muy feliz de ser tu novio y pasar esta fecha juntos ❤️!');
+        }
+        creaElementos();
+    </script>
+</body>
+</html>
